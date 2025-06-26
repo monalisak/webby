@@ -1,0 +1,14 @@
+{
+  "pages/index.js -> ../components/MapboxMap": {
+    "id": "pages/index.js -> ../components/MapboxMap",
+    "files": [
+      "static/chunks/_pages-dir-browser_components_MapboxMap_js.js"
+    ]
+  },
+  "pages/photos.js -> ../components/MapboxPhotoMap": {
+    "id": "pages/photos.js -> ../components/MapboxPhotoMap",
+    "files": [
+      "static/chunks/_pages-dir-browser_components_MapboxPhotoMap_js.js"
+    ]
+  }
+}
