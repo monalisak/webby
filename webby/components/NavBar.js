@@ -41,22 +41,13 @@ export default function NavBar() {
     };
   }, [router]);
 
-  const handleNavigation = (href) => {
-    router.push(href);
-    setGardenOpen(false);
-    setMobileMenuOpen(false);
-  };
-
   return (
     <nav className="px-4 sm:px-8 py-4 sm:py-6 border-b border-olive bg-cream relative z-50">
       <div className="flex items-center justify-between">
         <div className="flex items-center">
-          <button 
-            onClick={() => handleNavigation('/')}
-            className="focus:outline-none cursor-pointer"
-          >
+          <Link href="/" className="focus:outline-none cursor-pointer">
             <span className="text-2xl sm:text-3xl font-bold text-olive mr-2">✶M</span>
-          </button>
+          </Link>
         </div>
 
         {/* Mobile menu button */}
@@ -88,15 +79,15 @@ export default function NavBar() {
             </button>
             {gardenOpen && (
               <div className="absolute right-0 mt-2 w-48 bg-cream rounded-lg shadow-lg border border-olive z-50">
-                <button onClick={() => handleNavigation('/blog')} className="w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition cursor-pointer">Essays</button>
-                <button onClick={() => handleNavigation('/notes')} className="w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition cursor-pointer">Notes</button>
-                <button onClick={() => handleNavigation('/photos')} className="w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition cursor-pointer">Photos</button>
-                <button onClick={() => handleNavigation('/music')} className="w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition cursor-pointer">Music</button>
-                <button onClick={() => handleNavigation('/interesting')} className="w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition cursor-pointer">Stuff I Like</button>
+                <Link href="/blog" className="block w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition cursor-pointer">Essays</Link>
+                <Link href="/notes" className="block w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition cursor-pointer">Notes</Link>
+                <Link href="/photos" className="block w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition cursor-pointer">Photos</Link>
+                <Link href="/music" className="block w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition cursor-pointer">Music</Link>
+                <Link href="/interesting" className="block w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition cursor-pointer">Stuff I Like</Link>
               </div>
             )}
           </div>
-          <button onClick={() => handleNavigation('/about')} className="hover:text-olive cursor-pointer">About</button>
+          <Link href="/about" className="hover:text-olive cursor-pointer">About</Link>
         </div>
       </div>
 
@@ -118,14 +109,14 @@ export default function NavBar() {
             </button>
             {gardenOpen && (
               <div className="pl-4 py-2 space-y-2">
-                <button onClick={() => handleNavigation('/blog')} className="w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition rounded cursor-pointer">Essays</button>
-                <button onClick={() => handleNavigation('/notes')} className="w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition rounded cursor-pointer">Notes</button>
-                <button onClick={() => handleNavigation('/photos')} className="w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition rounded cursor-pointer">Photos</button>
-                <button onClick={() => handleNavigation('/music')} className="w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition rounded cursor-pointer">Music</button>
-                <button onClick={() => handleNavigation('/interesting')} className="w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition rounded cursor-pointer">Stuff I Like</button>
+                <Link href="/blog" className="block w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition rounded cursor-pointer">Essays</Link>
+                <Link href="/notes" className="block w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition rounded cursor-pointer">Notes</Link>
+                <Link href="/photos" className="block w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition rounded cursor-pointer">Photos</Link>
+                <Link href="/music" className="block w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition rounded cursor-pointer">Music</Link>
+                <Link href="/interesting" className="block w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition rounded cursor-pointer">Stuff I Like</Link>
               </div>
             )}
-            <button onClick={() => handleNavigation('/about')} className="w-full text-left px-4 py-2 text-forest hover:text-olive cursor-pointer">About</button>
+            <Link href="/about" className="block w-full text-left px-4 py-2 text-forest hover:text-olive cursor-pointer">About</Link>
           </div>
         </div>
       )}
