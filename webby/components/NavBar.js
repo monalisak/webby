@@ -20,12 +20,11 @@ export default function NavBar() {
       }
     }
 
-    // Add both mouse and touch event listeners
     document.addEventListener('mousedown', handleClickOutside);
-    document.addEventListener('touchend', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('touchend', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
     };
   }, []);
 
@@ -48,29 +47,22 @@ export default function NavBar() {
     setMobileMenuOpen(false);
   };
 
-  // Handle touch events explicitly
-  const handleTouchStart = (e) => {
-    e.preventDefault();
-  };
-
   return (
-    <nav className="px-4 sm:px-8 py-4 sm:py-6 border-b border-olive bg-cream relative z-[9999]">
+    <nav className="px-4 sm:px-8 py-4 sm:py-6 border-b border-olive bg-cream relative z-50">
       <div className="flex items-center justify-between">
         <div className="flex items-center">
           <button 
             onClick={() => handleNavigation('/')}
-            onTouchEnd={(e) => {e.preventDefault(); handleNavigation('/')}}
-            className="focus:outline-none cursor-pointer touch-manipulation"
+            className="focus:outline-none cursor-pointer"
           >
-            <span className="text-2xl sm:text-3xl font-bold text-olive mr-2 cursor-pointer">✶M</span>
+            <span className="text-2xl sm:text-3xl font-bold text-olive mr-2">✶M</span>
           </button>
         </div>
 
         {/* Mobile menu button */}
         <button
-          className="md:hidden p-2 text-forest hover:text-olive cursor-pointer touch-manipulation"
+          className="md:hidden p-2 text-forest hover:text-olive cursor-pointer"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          onTouchEnd={(e) => {e.preventDefault(); setMobileMenuOpen(!mobileMenuOpen)}}
           aria-label="Toggle menu"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -83,9 +75,8 @@ export default function NavBar() {
           {/* Garden Dropdown */}
           <div className="relative" ref={gardenRef}>
             <button
-              className="hover:text-olive flex items-center gap-1 focus:outline-none cursor-pointer touch-manipulation"
+              className="hover:text-olive flex items-center gap-1 focus:outline-none cursor-pointer"
               onClick={() => setGardenOpen(!gardenOpen)}
-              onTouchEnd={(e) => {e.preventDefault(); setGardenOpen(!gardenOpen)}}
               aria-haspopup="true"
               aria-expanded={gardenOpen}
               type="button"
@@ -96,16 +87,16 @@ export default function NavBar() {
               </svg>
             </button>
             {gardenOpen && (
-              <div className="absolute right-0 mt-2 w-48 bg-cream rounded-lg shadow-lg border border-olive z-[9999]">
-                <button onTouchEnd={(e) => {e.preventDefault(); handleNavigation('/blog')}} onClick={() => handleNavigation('/blog')} className="w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition cursor-pointer touch-manipulation">Essays</button>
-                <button onTouchEnd={(e) => {e.preventDefault(); handleNavigation('/notes')}} onClick={() => handleNavigation('/notes')} className="w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition cursor-pointer touch-manipulation">Notes</button>
-                <button onTouchEnd={(e) => {e.preventDefault(); handleNavigation('/photos')}} onClick={() => handleNavigation('/photos')} className="w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition cursor-pointer touch-manipulation">Photos</button>
-                <button onTouchEnd={(e) => {e.preventDefault(); handleNavigation('/music')}} onClick={() => handleNavigation('/music')} className="w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition cursor-pointer touch-manipulation">Music</button>
-                <button onTouchEnd={(e) => {e.preventDefault(); handleNavigation('/interesting')}} onClick={() => handleNavigation('/interesting')} className="w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition cursor-pointer touch-manipulation">Stuff I Like</button>
+              <div className="absolute right-0 mt-2 w-48 bg-cream rounded-lg shadow-lg border border-olive z-50">
+                <button onClick={() => handleNavigation('/blog')} className="w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition cursor-pointer">Essays</button>
+                <button onClick={() => handleNavigation('/notes')} className="w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition cursor-pointer">Notes</button>
+                <button onClick={() => handleNavigation('/photos')} className="w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition cursor-pointer">Photos</button>
+                <button onClick={() => handleNavigation('/music')} className="w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition cursor-pointer">Music</button>
+                <button onClick={() => handleNavigation('/interesting')} className="w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition cursor-pointer">Stuff I Like</button>
               </div>
             )}
           </div>
-          <button onClick={() => handleNavigation('/about')} onTouchEnd={(e) => {e.preventDefault(); handleNavigation('/about')}} className="hover:text-olive cursor-pointer touch-manipulation">About</button>
+          <button onClick={() => handleNavigation('/about')} className="hover:text-olive cursor-pointer">About</button>
         </div>
       </div>
 
@@ -113,13 +104,12 @@ export default function NavBar() {
       {mobileMenuOpen && (
         <div
           ref={mobileMenuRef}
-          className="fixed inset-x-0 top-[57px] bg-cream border-b border-olive shadow-lg z-[9999]"
+          className="fixed inset-x-0 top-[57px] bg-cream border-b border-olive shadow-lg z-50"
         >
           <div className="px-2 py-3">
             <button
-              className="w-full text-left px-4 py-2 text-forest hover:text-olive flex items-center justify-between cursor-pointer touch-manipulation"
+              className="w-full text-left px-4 py-2 text-forest hover:text-olive flex items-center justify-between cursor-pointer"
               onClick={() => setGardenOpen(!gardenOpen)}
-              onTouchEnd={(e) => {e.preventDefault(); setGardenOpen(!gardenOpen)}}
             >
               The Garden
               <svg className={`w-4 h-4 transition-transform ${gardenOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -128,14 +118,14 @@ export default function NavBar() {
             </button>
             {gardenOpen && (
               <div className="pl-4 py-2 space-y-2">
-                <button onTouchEnd={(e) => {e.preventDefault(); handleNavigation('/blog')}} onClick={() => handleNavigation('/blog')} className="w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition rounded cursor-pointer touch-manipulation">Essays</button>
-                <button onTouchEnd={(e) => {e.preventDefault(); handleNavigation('/notes')}} onClick={() => handleNavigation('/notes')} className="w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition rounded cursor-pointer touch-manipulation">Notes</button>
-                <button onTouchEnd={(e) => {e.preventDefault(); handleNavigation('/photos')}} onClick={() => handleNavigation('/photos')} className="w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition rounded cursor-pointer touch-manipulation">Photos</button>
-                <button onTouchEnd={(e) => {e.preventDefault(); handleNavigation('/music')}} onClick={() => handleNavigation('/music')} className="w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition rounded cursor-pointer touch-manipulation">Music</button>
-                <button onTouchEnd={(e) => {e.preventDefault(); handleNavigation('/interesting')}} onClick={() => handleNavigation('/interesting')} className="w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition rounded cursor-pointer touch-manipulation">Stuff I Like</button>
+                <button onClick={() => handleNavigation('/blog')} className="w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition rounded cursor-pointer">Essays</button>
+                <button onClick={() => handleNavigation('/notes')} className="w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition rounded cursor-pointer">Notes</button>
+                <button onClick={() => handleNavigation('/photos')} className="w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition rounded cursor-pointer">Photos</button>
+                <button onClick={() => handleNavigation('/music')} className="w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition rounded cursor-pointer">Music</button>
+                <button onClick={() => handleNavigation('/interesting')} className="w-full text-left px-4 py-2 hover:bg-olive hover:text-white transition rounded cursor-pointer">Stuff I Like</button>
               </div>
             )}
-            <button onTouchEnd={(e) => {e.preventDefault(); handleNavigation('/about')}} onClick={() => handleNavigation('/about')} className="w-full text-left px-4 py-2 text-forest hover:text-olive cursor-pointer touch-manipulation">About</button>
+            <button onClick={() => handleNavigation('/about')} className="w-full text-left px-4 py-2 text-forest hover:text-olive cursor-pointer">About</button>
           </div>
         </div>
       )}
